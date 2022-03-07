@@ -1,6 +1,6 @@
 package com.josephgwara.shoppinglist.data.repositories
 
-import com.josephgwara.shoppinglist.data.DB.ShoppingDatabase
+import com.josephgwara.shoppinglist.data.db.ShoppingDatabase
 import com.josephgwara.shoppinglist.data.ShoppingItems
 
 class ShoppingRepository(private  val db :ShoppingDatabase) {

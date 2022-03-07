@@ -3,9 +3,8 @@ package com.josephgwara.shoppinglist.ui.shoppingList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.josephgwara.shoppinglist.R
-import com.josephgwara.shoppinglist.data.DB.ShoppingDatabase
+import com.josephgwara.shoppinglist.data.db.ShoppingDatabase
 import com.josephgwara.shoppinglist.data.repositories.ShoppingRepository
 
 class ShoppingActivity : AppCompatActivity() {

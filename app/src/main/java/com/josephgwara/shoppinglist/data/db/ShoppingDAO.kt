@@ -1,4 +1,4 @@
-package com.josephgwara.shoppinglist.data.DB
+package com.josephgwara.shoppinglist.data.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
