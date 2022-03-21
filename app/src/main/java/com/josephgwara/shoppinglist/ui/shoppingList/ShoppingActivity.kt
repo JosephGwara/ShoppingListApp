@@ -3,6 +3,7 @@ package com.josephgwara.shoppinglist.ui.shoppingList
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,8 +11,8 @@ import com.josephgwara.shoppinglist.R
 import com.josephgwara.shoppinglist.data.ShoppingItems
 import com.josephgwara.shoppinglist.data.db.ShoppingDatabase
 import com.josephgwara.shoppinglist.data.repositories.ShoppingRepository
+import com.josephgwara.shoppinglist.databinding.ActivityShoppingBinding
 import com.josephgwara.shoppinglist.other.ShoppingItemAdapter
-import kotlinx.android.synthetic.main.activity_shopping.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
@@ -24,7 +25,9 @@ class ShoppingActivity : AppCompatActivity() ,KodeinAware{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_shopping)
+
+        val binding:ActivityShoppingBinding = ActivityShoppingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
         //val viewModel  = ViewModelProviders.of(this,Factory).get(ShoppingViewModel::class.java)
@@ -32,14 +35,14 @@ class ShoppingActivity : AppCompatActivity() ,KodeinAware{
 
         val adapter = ShoppingItemAdapter(listOf(),viewModel)
 
-        rv_shoppingItems.layoutManager = LinearLayoutManager(this)
-        rv_shoppingItems.adapter = adapter
+        binding.rvShoppingItems.layoutManager = LinearLayoutManager(this)
+        binding.rvShoppingItems.adapter = adapter
 
         viewModel.getAllShoppingItems().observe(this, Observer {
             adapter.items = it
             adapter.notifyDataSetChanged()
         })
-fab.setOnClickListener {
+binding.fab.setOnClickListener {
     AddShoppingItemDialog(this,object :AddDialogListener{
         override fun onAddButtonClicked(item: ShoppingItems) {
             viewModel.upsert(item)
